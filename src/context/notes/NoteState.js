@@ -1,12 +1,8 @@
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
-    const state = {
-        "name" : "Lol" ,
-        "class" : "7a"
-    }
     return (
-        <NoteContext.Provider value={state}>
+        <NoteContext.Provider value={{}}>
             {props.children}
         </NoteContext.Provider>
     )
