@@ -1,13 +1,10 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
 
 const Navbar = () => {
   // get the current page of the user and make it active in navbar
   let location = useLocation();
-  useEffect(() => {
-    console.log(location.pathname) ;
-  }, [location]);
 
   return (
     <>
