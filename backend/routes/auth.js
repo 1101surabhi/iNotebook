@@ -75,17 +75,18 @@ router.post(
 
     try {
       let user = await User.findOne({ email });
+      let success = false ;
       if (!user) {
         res
           .status(400)
-          .json({ error: "Incorrent credentials. Please try again." });
+          .json({ success, error: "Incorrent credentials. Please try again." });
       }
 
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
         return res
           .status(400)
-          .json({ error: "Incorrect credentials. Please try again." });
+          .json({success, error: "Incorrect credentials. Please try again." });
       }
 
       const data = {
@@ -93,8 +94,9 @@ router.post(
           id: user.id,
         },
       };
+      success = true ;
       const authtoken = jwt.sign(data, JWT_SECRET);
-      res.json({ authtoken });
+      res.json({ success, authtoken });
     } catch (error) {
       console.log(error.message);
       res.status(500).send("Internal Server Error.");

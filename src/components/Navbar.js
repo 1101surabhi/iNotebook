@@ -38,8 +38,8 @@ const Navbar = () => {
               </li>
             </ul>
             <form className="d-flex" role="search">
-            <Link class="btn btn-primary" to="/login" role="button">Login</Link>
-            <Link class="btn btn-primary" style={{marginLeft:"10px"}} to="/signup" role="button">Signup</Link>
+            <Link className="btn btn-primary" to="/login" role="button">Login</Link>
+            <Link className="btn btn-primary" style={{marginLeft:"10px"}} to="/signup" role="button">Signup</Link>
             </form>
           </div>
         </div>
