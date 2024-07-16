@@ -104,10 +104,10 @@ router.delete("/deletenote/:id", fetchuser, async (req, res) => {
     }
 
     note = await Note.findByIdAndDelete(req.params.id);
-    res.send("Note deleted successfully.");
+    res.send({"message" : "Note deleted successfully."});
   } catch (error) {
     console.log(error.message);
-    res.status(500).send("Internal Server Error.");
+    res.status(500).send({"message" : "Internal Server Error."});
   }
 });
 
