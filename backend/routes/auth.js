@@ -21,8 +21,9 @@ router.post(
   async (req, res) => {
     //if there are any errors in validation return them.
     const errors = validationResult(req);
+    let success = false ; 
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
 
     try {
@@ -31,7 +32,7 @@ router.post(
         // console.log(user) ;
         return res
           .status(400)
-          .json({ error: "Sorry, this email is already taken" });
+          .json({success, error: "Sorry, this email is already taken" });
       }
 
       //create a new user
@@ -49,7 +50,8 @@ router.post(
         },
       };
       const authtoken = jwt.sign(data, JWT_SECRET);
-      res.json({ authtoken });
+      success = true ;
+      res.json({success, authtoken });
     } catch (error) {
       console.log(error.message);
       res.status(500).send("Internal Server Error.");
