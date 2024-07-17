@@ -38,6 +38,8 @@ const Signup = (props) => {
   };
 
   return (
+    <>
+    <h2>Signup to continue to iNotebook</h2>
     <div className="container my-3">
       <form onSubmit={submitHandler}>
         <div className="mb-3">
@@ -95,6 +97,7 @@ const Signup = (props) => {
         </button>
       </form>
     </div>
+    </>
   );
 };
 

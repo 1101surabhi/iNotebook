@@ -1,10 +1,16 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 
 const Navbar = () => {
   // get the current page of the user and make it active in navbar
   let location = useLocation();
+  const navigate = useNavigate() ;
+
+  const logoutHandler = () => {
+    localStorage.removeItem('token') ;
+    navigate('/login') ;
+  }
 
   return (
     <>
@@ -37,10 +43,10 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex" role="search">
+            {!localStorage.getItem('token') ? <form className="d-flex" role="search">
             <Link className="btn btn-primary" to="/login" role="button">Login</Link>
             <Link className="btn btn-primary" style={{marginLeft:"10px"}} to="/signup" role="button">Signup</Link>
-            </form>
+            </form> : <button onClick={logoutHandler} className="button btn btn-primary">Logout</button>}
           </div>
         </div>
       </nav>
