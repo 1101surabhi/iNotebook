@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
+const Signup = (props) => {
   const navigate = useNavigate();
   const [details, setDetails] = useState({
     name: "",
@@ -29,7 +29,8 @@ const Signup = () => {
       //save the auth token in local storage
       localStorage.setItem("token", json.authtoken);
       navigate("/");
-    } else alert("Incorrect details.");
+      props.showAlert("Account created successfully.", "Success")
+    } else props.showAlert("Incorrect credentials.", "Danger")
   };
 
   const textChangeHandler = (e) => {
@@ -37,7 +38,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container my-3">
       <form onSubmit={submitHandler}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
